@@ -21,7 +21,7 @@ public class TestListener implements ITestListener, IAnnotationTransformer {
         //Initialize the extent report
         String testName = result.getMethod().getMethodName();
         //Start logging in Extent Reoorts
-        ExtentManager.startTest("Test Started"+testName);
+        ExtentManager.startTest(testName);
         ExtentManager.logStep("Test Started : "+testName);
 //        ITestListener.super.onTestStart(result);
     }
@@ -32,7 +32,7 @@ public class TestListener implements ITestListener, IAnnotationTransformer {
     public void onTestSuccess(ITestResult result) {
         String testName = result.getMethod().getMethodName();
 
-        if(result.getTestClass().getName().toLowerCase().contains("api")) {
+        if(!result.getTestClass().getName().toLowerCase().contains("api")) {
             ExtentManager.logStepWithScreenshot(BaseClass.getDriver(), "Test Passed Successfully!", "Test End: " + testName + " - ☑\uFE0F Test Passed");
         }
         else {

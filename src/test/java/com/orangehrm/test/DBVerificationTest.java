@@ -45,7 +45,7 @@ public class DBVerificationTest extends BaseClass {
         String employeeMiddleName = employeeDetails.get("middleName");
         String employeeLastName = employeeDetails.get("lastName");
 
-        String emplFirstAndMiddleName=(employeeFirstName+"Test"+employeeMiddleName).trim();
+        String emplFirstAndMiddleName=(employeeFirstName+employeeMiddleName).trim();
 
         ExtentManager.logStep("Verify the employee first and middle name");
         softAssert.assertTrue(homePage.verifyEmployeeFirstAndMiddleName(emplFirstAndMiddleName),"Fist and Middle name are not matching");

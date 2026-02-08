@@ -14,7 +14,7 @@ public class APITest {
     public void verifyGetUserAPI(){
         SoftAssert softAssert = new SoftAssert();
         //Step1: Define API Endpoint
-        String endPoint = "https://jsonplaceholder.typicode.com/user/1";
+        String endPoint = "https://api.genderize.io/?name=luc";
         ExtentManager.logStep("API Endpoint: "+endPoint);
 
         //Step2: Send GET Request
@@ -34,8 +34,8 @@ public class APITest {
 
         //Step 4 : validate user name
         ExtentManager.logStep("Validating response body for username");
-        String userName=APIUtility.getJsonValue(response,"username");
-        boolean isUserNameValid="Bret".equals(userName);
+        String userName=APIUtility.getJsonValue(response,"name");
+        boolean isUserNameValid="luc".equals(userName);
         softAssert.assertTrue(isUserNameValid,"Username is not valid");
         if (isStatusCodeValid){
             ExtentManager.logStep("Username Validation Passed !");
@@ -45,15 +45,15 @@ public class APITest {
         }
 
         //Step 5 : validate email
-        ExtentManager.logStep("Validating response body for username");
-        String email=APIUtility.getJsonValue(response,"email");
-        boolean isUseremailValid="Sincere@april.biz".equals(email);
-        softAssert.assertTrue(isUseremailValid,"Email is not valid");
-        if (isUseremailValid){
-            ExtentManager.logStep("Email Validation Passed !");
+        ExtentManager.logStep("Validating response body for Gender");
+        String email=APIUtility.getJsonValue(response,"gender");
+        boolean gender="male".equals(email);
+        softAssert.assertTrue(gender,"Gender is not valid");
+        if (gender){
+            ExtentManager.logStep("Gender Validation Passed !");
         }
         else {
-            ExtentManager.logFailure("Email Validation Failed!");
+            ExtentManager.logFailure("Gender Validation Failed!");
         }
         softAssert.assertAll();
     }
