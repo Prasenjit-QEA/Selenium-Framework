@@ -357,7 +357,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Prasenjit**
 
-- GitHub: [https://https://github.com/Prasenjit-QEA]
+- GitHub: [https://github.com/Prasenjit-QEA]
 - LinkedIn: [https://linkedin.com/in/YOUR_PROFILE](https://www.linkedin.com/in/prasenjit-paul-b67506211]
 
 ## 🙏 Acknowledgments
