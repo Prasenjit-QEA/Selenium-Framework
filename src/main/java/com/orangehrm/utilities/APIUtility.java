@@ -13,6 +13,7 @@ public class APIUtility {
         RestAssured.given().header("Content-Type","application/json")
                 .body(payLoad)
                 .post(endPoint);
+
     }
 
     //Method to validate the response status
