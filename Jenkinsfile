@@ -62,7 +62,7 @@ pipeline {
 
                     <p><b>Build log is attached.</b></p>
 
-                    <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Pipeline_Job/HTML_20Extent_20Report/">Click here</a></p>
+                    <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Pipeline_Job/Extent_20Spark_20Report/">Click here</a></p>
                     <p>Best regards,</p>
                     <p><b>Automation Team</b></p>
                 </body>
@@ -93,7 +93,7 @@ pipeline {
 
                                          <p><b>Build log is attached.</b></p>
 
-                                         <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Pipeline_Job/HTML_20Extent_20Report/">Click here</a></p>
+                                         <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Pipeline_Job/Extent_20Spark_20Report/">Click here</a></p>
                       <p>Best regards,</p>
                       <p><b>Automation Team</b></p>
                 </body>
