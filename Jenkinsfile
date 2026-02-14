@@ -27,7 +27,7 @@ pipeline {
                 publishHTML(target: [
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
-                    reportDir            : 'target/ExtentReport', // Recommended to output to target/
+                    reportDir            : 'src/test/resources/ExtentReport', // Recommended to output to target/
                     reportFiles          : 'ExtentReport.html',
                     reportName           : 'Extent Spark Report'
                 ])
@@ -38,7 +38,7 @@ pipeline {
     post {
         always {
             // Corrected glob pattern for artifacts
-            archiveArtifacts artifacts: '**/ExtentReport/*.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**src/test/resources/ExtentReport/*.html', allowEmptyArchive: true
             junit 'target/surefire-reports/*.xml'
         }
 
@@ -55,9 +55,16 @@ pipeline {
                     <p><b>Build Number:</b> #${env.BUILD_NUMBER}</p>
                     <p><b>Build Status:</b> <span style="color: green;"><b>SUCCESS</b></span></p>
                     <p><b>Build URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+
+                    <p><b.Last Commit:</b></p>
+                    <p>${env.GIT_COMMIT}</p>
                     <p><b>Branch:</b> ${env.GIT_BRANCH}</p>
-                    <p><b>Extent Report:</b> <a href="${env.JOB_URL}ws/target/ExtentReport/ExtentReport.html">Click here</a></p>
-                    <p>Best regards,<br><b>Automation Team</b></p>
+
+                    <p><b>Build log is attached.</b></p>
+
+                    <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Build/HTML_20Extent_20Report/">Click here</a></p>
+                    <p>Best regards,</p>
+                    <p><b>Automation Team</b></p>
                 </body>
                 </html>
                 """,
@@ -79,8 +86,16 @@ pipeline {
                     <p><b>Build Number:</b> #${env.BUILD_NUMBER}</p>
                     <p><b>Build Status:</b> <span style="color: red;"><b>FAILED &#10060;</b></span></p>
                     <p><b>Build URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                    <p><b>Build log is attached to this email.</b></p>
-                    <p>Best regards,<br><b>Automation Team</b></p>
+
+                      <p><b.Last Commit:</b></p>
+                                         <p>${env.GIT_COMMIT}</p>
+                                         <p><b>Branch:</b> ${env.GIT_BRANCH}</p>
+
+                                         <p><b>Build log is attached.</b></p>
+
+                                         <p><b>Extent Report:</b> <a href="http://localhost:8080/job/OrangeHRM_Build/HTML_20Extent_20Report/">Click here</a></p>
+                      <p>Best regards,</p>
+                      <p><b>Automation Team</b></p>
                 </body>
                 </html>
                 """,
