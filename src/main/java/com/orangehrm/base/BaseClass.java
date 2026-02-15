@@ -109,20 +109,20 @@ public class BaseClass {
         } else {
             if (browser.equalsIgnoreCase("chrome")) {
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications");
                 driver.set(new ChromeDriver(options));
                 ExtentManager.registerDriver(getDriver());
                 logger.info("ChromeDriver Instance is created.");
             } else if (browser.equalsIgnoreCase("firefox")) {
                 FirefoxOptions options = new FirefoxOptions();
-                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications");
                 driver.set(new FirefoxDriver(options));
                 ExtentManager.registerDriver(getDriver());
                 logger.info("FirefoxDriver Instance is created.");
             } else if (browser.equalsIgnoreCase("edge")) {
                 EdgeOptions options = new EdgeOptions();
                 // Prefer the new headless mode for Chromium-based Edge
-                options.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications");
                 driver.set(new EdgeDriver(options));
                 ExtentManager.registerDriver(getDriver());
                 logger.info("EdgeDriver Instance is created.");
