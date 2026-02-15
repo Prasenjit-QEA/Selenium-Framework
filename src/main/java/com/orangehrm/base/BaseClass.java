@@ -78,8 +78,6 @@ public class BaseClass {
     }
 
     private synchronized void launchBrowser(String browser) {
-        // Initialize the WebDriver based on browser defined in config.properties file.
-//        String browser = properties.getProperty("browser");
         boolean seleniumGrid = Boolean.parseBoolean(properties.getProperty("seleniumGrid"));
         String gridURL = properties.getProperty("gridURL");
 
@@ -97,7 +95,8 @@ public class BaseClass {
                     logger.info("Remote WebDriver instance created for Firefox on Selenium Grid.");
                 } else if (browser.equalsIgnoreCase("edge")) {
                     EdgeOptions options = new EdgeOptions();
-                    options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                    // Use the new headless flag supported by Chromium-based Edge
+                    options.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
                     driver.set(new RemoteWebDriver(new URL(gridURL), options));
                     logger.info("Remote WebDriver instance created for Edge on Selenium Grid.");
                 } else {
@@ -109,42 +108,24 @@ public class BaseClass {
             }
         } else {
             if (browser.equalsIgnoreCase("chrome")) {
-                // Create ChromeOptions
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless");// Run Chrome in headless mode
-                options.addArguments("--disable-gpu");// Disable GPU for headless mode
-                options.addArguments("--window-size=1920,1080");// Set Window size
-                options.addArguments("--disable-notifications");// Disable browser notifications
-                options.addArguments("--no-sandbox");// Required for some CI environments
-                options.addArguments("--disable-dev-shm-usage");// Resolve issues in resources
-                // driver = new ChromeDriver();
-                driver.set(new ChromeDriver(options));// New Changes as per Thread
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                driver.set(new ChromeDriver(options));
                 ExtentManager.registerDriver(getDriver());
                 logger.info("ChromeDriver Instance is created.");
             } else if (browser.equalsIgnoreCase("firefox")) {
                 FirefoxOptions options = new FirefoxOptions();
-                options.addArguments("--headless");// Run Chrome in headless mode
-                options.addArguments("--disable-gpu");// Disable GPU for headless mode
-                options.addArguments("--window-size=1920,1080");//Set Window size
-                options.addArguments("--disable-notifications");// Disable browser notifications
-                options.addArguments("--no-sandbox");// Required for some CI environments
-                options.addArguments("--disable-dev-shm-usage");// Resolve issues in resources
-                // driver = new FirefoxDriver();
-                driver.set(new FirefoxDriver());
+                options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                driver.set(new FirefoxDriver(options));
                 ExtentManager.registerDriver(getDriver());
                 logger.info("FirefoxDriver Instance is created.");
-            } else if (browser.equalsIgnoreCase("Edge")) {
+            } else if (browser.equalsIgnoreCase("edge")) {
                 EdgeOptions options = new EdgeOptions();
-                options.addArguments("--headless");// Run Chrome in headless mode
-                options.addArguments("--disable-gpu");// Disable GPU for headless mode
-                options.addArguments("--window-size=1920,1080");//Set Window size
-                options.addArguments("--disable-notifications");// Disable browser notifications
-                options.addArguments("--no-sandbox");// Required for some CI environments
-                options.addArguments("--disable-dev-shm-usage");// Resolve issues in resources
-                // driver = new EdgeDriver();
-                driver.set(new EdgeDriver());
+                // Prefer the new headless mode for Chromium-based Edge
+                options.addArguments("--headless=new", "--disable-gpu", "--window-size=1920,1080", "--disable-notifications", "--no-sandbox", "--disable-dev-shm-usage");
+                driver.set(new EdgeDriver(options));
                 ExtentManager.registerDriver(getDriver());
-                logger.info("FirefoxDriver Instance is created.");
+                logger.info("EdgeDriver Instance is created.");
             } else {
                 throw new IllegalArgumentException("Browser not supported : " + browser);
             }
